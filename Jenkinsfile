@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3'
+    }
+
     stages {
 
         stage('Build') {
@@ -11,21 +15,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t springboot-app .'
-            }
-        }
-
-        stage('Stop Old Container') {
-            steps {
-                sh 'docker stop springboot-container || true'
-                sh 'docker rm springboot-container || true'
+                sh 'docker build -t my-app .'
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name springboot-container springboot-app'
+                sh 'docker run -d -p 8081:8080 my-app'
             }
         }
     }
-}
+}}
