@@ -14,7 +14,7 @@ public class HomeController {
 
     @GetMapping("/demo")
     public String demo() {
-        return "Demo Working";
+        return "Home Page Working v2";
     }
 }
 
