@@ -1,12 +1,9 @@
-FROM tomcat:9.0
+FROM openjdk:17
 
-# Remove default apps
-RUN rm -rf /usr/local/tomcat/webapps/*
+WORKDIR /app
 
-# Copy your WAR as ROOT
-COPY target/sampleDemo.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/sampleDemo.jar app.jar
 
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"] #hello hi welcome 
-
+ENTRYPOINT ["java","-jar","app.jar"]
