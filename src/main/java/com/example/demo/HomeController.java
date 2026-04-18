@@ -18,6 +18,6 @@ public class HomeController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello DevOps CI/CD!";
+        return "Pipeline working now";
     }
 }
