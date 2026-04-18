@@ -16,5 +16,9 @@ public class HomeController {
     public String demo() {
         return "Home Page Working v2";
     }
+@GetMapping("/hello")
+public String hello() {
+    return "Hello DevOps!";
+}
 }
 
