@@ -10,7 +10,7 @@ public class HomeController {
  
     public String home() {
         return "Home Page Working";
-    }
+   
 
     @GetMapping("/demo")
     public String demo() {
@@ -21,4 +21,4 @@ public String hello() {
     return "Hello DevOps!";
 }
 }
-
+}
