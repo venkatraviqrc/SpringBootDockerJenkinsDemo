@@ -19,12 +19,15 @@ pipeline {
             }
         }
 
-        stage('Run Container') {
+        stage('Deploy') {
             steps {
-                sh 'docker run -d -p 9090:8080 my-app'
+                sh '''
+                docker rm -f springboot-container || true
+                docker pull ravishekhar169/springboot-app
+                docker run -d -p 9090:8080 --name springboot-container ravishekhar169/springboot-app
+                '''
             }
         }
 
     }
-
 }
