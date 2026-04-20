@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-                echo 'Cloning done by Jenkins automatically'
-            }
-        }
 
         stage('Build') {
             steps {
@@ -19,5 +14,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
+
+        stage('Run App') {
+            steps {
+                sh 'nohup java -jar target/*.jar &'
+            }
+        }
+
     }
 }
