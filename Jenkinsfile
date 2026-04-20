@@ -34,4 +34,4 @@
                 docker stop $CONTAINER_NAME || true
                 docker rm $CONTAI
 ~
-
+}
