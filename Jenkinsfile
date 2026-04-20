@@ -14,7 +14,8 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'https://github.com/venkatraviqrc/SpringBootDockerJenkinsDemo.git'
+                git credentialsId: 'github-creds',
+    url: 'https://github.com/venkatraviqrc/SpringBootDockerJenkinsDemo.git'
             }
         }
 
