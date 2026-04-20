@@ -1,24 +1,4 @@
-pipeline {
-    agent any
-
-    tools {
-        maven 'Maven3'
-    }
-
-    environment {
-        DOCKERHUB_REPO = "ravishekhar169/springboot-docker"
-        CONTAINER_NAME = "springboot-container"
-    }
-
-    stages {
-
-        stage('Clone') {
-            steps {
-                git 'https://github.com/venkatraviqrc/SpringBootDockerJenkinsDemo.git'
-            }
-        }
-
-        stage('Build') {
+  stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
@@ -42,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('Push to DockerHub') {
+        stage('Docker Push') {
             steps {
                 sh 'docker push $DOCKERHUB_REPO:latest'
             }
@@ -52,10 +32,6 @@ pipeline {
             steps {
                 sh '''
                 docker stop $CONTAINER_NAME || true
-                docker rm $CONTAINER_NAME || true
-                docker run -d -p 9000:9000 --name $CONTAINER_NAME $DOCKERHUB_REPO:latest
-                '''
-            }
-        }
-    }
-}
+                docker rm $CONTAI
+~
+
