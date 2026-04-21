@@ -63,7 +63,7 @@ pipeline {
 stage('Test') {
             steps {
                 sh 'sleep 10'
-                sh 'curl http://localhost:9000'
+                sh 'curl http://localhost:9001'
             }
         }
     }
