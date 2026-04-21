@@ -56,5 +56,11 @@ pipeline {
                 sh 'docker run -d -p 9000:9000 --name $CONTAINER_NAME $DOCKERHUB_REPO:latest'
             }
         }
+stage('Test') {
+            steps {
+                sh 'sleep 10'
+                sh 'curl http://localhost:9000'
+            }
+        }
     }
 }
