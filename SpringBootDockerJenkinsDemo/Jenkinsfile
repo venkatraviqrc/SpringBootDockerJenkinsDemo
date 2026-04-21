@@ -50,20 +50,10 @@ pipeline {
         }
 
         stage('Deploy') {
-    steps {
-        sh '''
-        docker rm -f springboot-container || true
-        docker run -d -p 9000:8080 \
-        --name springboot-container \
-        --restart always \
-        ravishekhar169/springboot-docker:latest
-        '''
-    }
-}
-stage('Test') {
             steps {
-                sh 'sleep 10'
-                sh 'curl http://localhost:9000'
+                sh 'docker stop $CONTAINER_NAME || true'
+                sh 'docker rm $CONTAINER_NAME || true'
+                sh 'docker run -d -p 9000:9000 --name $CONTAINER_NAME $DOCKERHUB_REPO:latest'
             }
         }
     }
