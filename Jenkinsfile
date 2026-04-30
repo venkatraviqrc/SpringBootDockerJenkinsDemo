@@ -1,15 +1,22 @@
-stage('Clean') {
-    steps {
-        deleteDir()
-    }
-}pipeline {
+pipeline {
     agent any
 
     tools {
         maven 'Maven3'
     }
 
+    environment {
+        DOCKERHUB_REPO = "ravishekhar169/springboot-docker"
+        CONTAINER_NAME = "springboot-container"
+    }
+
     stages {
+
+        stage('Clean') {
+            steps {
+                deleteDir()
+            }
+        }
 
         stage('Build') {
             steps {
@@ -17,34 +24,47 @@ stage('Clean') {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Docker Build') {
             steps {
-                sh 'docker build -t sampledemo .'
+                sh 'docker build -t $DOCKERHUB_REPO:latest .'
             }
         }
 
-        stage('Stop Old Container') {
+        stage('Docker Login') {
             steps {
-                sh 'docker stop sampledemo-container || true'
-                sh 'docker rm sampledemo-container || true'
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                }
             }
         }
 
-        stage('Run Container') {
+        stage('Docker Push') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name sampledemo-container sampledemo'
+                sh 'docker push $DOCKERHUB_REPO:latest'
             }
         }
-	stage('Deploy') {
-    steps {
-        sh '''
-        docker rm -f springboot-container || true
-        docker run -d -p 9000:9000 \
-        --name springboot-container \
-        --restart always \
-        ravishekhar169/springboot-docker:latest
-        '''
-    }
-}
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                docker rm -f springboot-container || true
+                docker run -d -p 9000:8080 \
+                --name springboot-container \
+                --restart always \
+                ravishekhar169/springboot-docker:latest
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'sleep 15'
+                sh 'curl -f http://localhost:9000/hello'
+            }
+        }
     }
 }
