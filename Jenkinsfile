@@ -31,5 +31,16 @@ pipeline {
                 sh 'docker run -d -p 8081:8080 --name sampledemo-container sampledemo'
             }
         }
+	stage('Deploy') {
+    steps {
+        sh '''
+        docker rm -f springboot-container || true
+        docker run -d -p 9000:9000 \
+        --name springboot-container \
+        --restart always \
+        ravishekhar169/springboot-docker:latest
+        '''
+    }
+}
     }
 }
