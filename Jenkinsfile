@@ -1,4 +1,8 @@
-pipeline {
+stage('Clean') {
+    steps {
+        deleteDir()
+    }
+}pipeline {
     agent any
 
     tools {
