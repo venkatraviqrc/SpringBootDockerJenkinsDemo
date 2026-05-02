@@ -1,5 +1,7 @@
 pipeline {
 agent any
+
+```
 tools {
     maven 'Maven3'
 }
@@ -74,13 +76,11 @@ stages {
 
 post {
     success {
-        echo 'Pipeline Success ✅'
+        echo 'Pipeline Success'
     }
     failure {
-        echo 'Pipeline Failed ❌'
+        echo 'Pipeline Failed'
     }
 }
-```
-
 }
 
