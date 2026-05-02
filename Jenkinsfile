@@ -72,7 +72,7 @@ stages {
         steps {
             sh '''
             sleep 15
-            curl -f http://localhost:9000
+            curl -f http://localhost:9000/hello
             '''
         }
   
