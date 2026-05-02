@@ -60,7 +60,6 @@ stages {
             docker run -d -p 9000:8080 \
             --name $CONTAINER_NAME \
             $DOCKERHUB_REPO:latest
-            '''
         }
     }
 
@@ -80,7 +79,5 @@ post {
         echo 'Pipeline Failed ❌'
     }
 }
-```
-
 }
 
