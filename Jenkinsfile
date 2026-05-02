@@ -77,6 +77,7 @@ stages {
         }
   
 }
+}
 post {
     success {
         echo 'Pipeline Success ✅'
