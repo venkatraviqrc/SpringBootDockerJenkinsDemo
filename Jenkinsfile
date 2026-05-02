@@ -12,9 +12,9 @@ pipeline {
 
     stages {
 
-        stage('Clean') {
+        stage('Checkout Code') {
             steps {
-                deleteDir()
+                checkout scm
             }
         }
 
@@ -37,7 +37,9 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    sh '''
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    '''
                 }
             }
         }
@@ -48,23 +50,32 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Container') {
             steps {
                 sh '''
-                docker rm -f springboot-container || true
+                docker rm -f $CONTAINER_NAME || true
                 docker run -d -p 9000:8080 \
-                --name springboot-container \
+                --name $CONTAINER_NAME \
                 --restart always \
-                ravishekhar169/springboot-docker:latest
+                $DOCKERHUB_REPO:latest
                 '''
             }
         }
 
-        stage('Test') {
+        stage('Test Application') {
             steps {
                 sh 'sleep 15'
                 sh 'curl -f http://localhost:9000/hello'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully ✅'
+        }
+        failure {
+            echo 'Pipeline failed ❌'
         }
     }
 }
