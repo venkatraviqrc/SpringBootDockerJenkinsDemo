@@ -1,5 +1,6 @@
 pipeline {
 agent any
+
 tools {
     maven 'Maven3'
 }
@@ -31,7 +32,10 @@ stages {
 
     stage('Docker Build') {
         steps {
-            sh 'docker build -t $DOCKERHUB_REPO:latest .'
+            sh '''
+            docker rmi -f $DOCKERHUB_REPO:latest || true
+            docker build -t $DOCKERHUB_REPO:latest .
+            '''
         }
     }
 
@@ -66,18 +70,19 @@ stages {
 
     stage('Test') {
         steps {
-            sh 'sleep 15'
-            sh 'curl -f http://localhost:9000'
+            sh '''
+            sleep 15
+            curl -f http://localhost:9000
+            '''
         }
-    }
-}
+  
 
 post {
     success {
-        echo 'Pipeline Success'
+        echo 'Pipeline Success ✅'
     }
     failure {
-        echo 'Pipeline Failed'
+        echo 'Pipeline Failed ❌'
     }
 }
 }
