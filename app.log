@@ -1,0 +1,27 @@
+nohup: ignoring input
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.18)
+
+2026-05-08 10:03:33.101  INFO 5468 --- [           main] com.example.demo.DemoApplication         : Starting DemoApplication v0.0.1-SNAPSHOT using Java 21.0.10 on ip-172-31-35-145 with PID 5468 (/home/ubuntu/Spring-Boot-Docker-Pipeline-job/target/sampleDemo.jar started by ubuntu in /home/ubuntu/Spring-Boot-Docker-Pipeline-job)
+2026-05-08 10:03:33.108  INFO 5468 --- [           main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-08 10:03:35.064  INFO 5468 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2026-05-08 10:03:35.066  INFO 5468 --- [           main] o.a.catalina.core.AprLifecycleListener   : An older version [1.2.35] of the Apache Tomcat Native library is installed, while Tomcat recommends a minimum version of [1.2.38]
+2026-05-08 10:03:35.066  INFO 5468 --- [           main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.35] using APR version [1.7.2].
+2026-05-08 10:03:35.066  INFO 5468 --- [           main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2026-05-08 10:03:35.066  INFO 5468 --- [           main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2026-05-08 10:03:35.072  INFO 5468 --- [           main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 3.0.13 30 Jan 2024]
+2026-05-08 10:03:35.089  INFO 5468 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-08 10:03:35.089  INFO 5468 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-05-08 10:03:35.233  INFO 5468 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-08 10:03:35.233  INFO 5468 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1973 ms
+2026-05-08 10:03:35.874  INFO 5468 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2026-05-08 10:03:35.888  INFO 5468 --- [           main] com.example.demo.DemoApplication         : Started DemoApplication in 3.656 seconds (JVM running for 4.406)
+2026-05-08 10:03:37.096  INFO 5468 --- [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-08 10:03:37.096  INFO 5468 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-08 10:03:37.098  INFO 5468 --- [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
